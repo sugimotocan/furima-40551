@@ -6,13 +6,13 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | email              | string | null: false, unique: true |
-| password           | string | null: false |
+| encrypted_password | string | null: false |
 | name_first         | string | null: false |
+| name_first(kana)   | string | null: false |
 | name_last          | string | null: false |
-| birthday           | text   | null: false |
-| nickname         | text   | null: false |
-| user_id           | text   | null: false |
-
+| name_last(kana)    | string | null: false |
+| birthday           | date   | null: false |
+| nickname           | string | null: false |
 
 ### Association
 
@@ -34,11 +34,11 @@
 | price                       | text       | null: false |
 | sales_commission            | text       | null: false |
 | sales_profit                | text       | null: false |
-
+| user                        | references | null: false, foreign_key: true|
 
 ### Association
 
-- belongs_to :user
+- belongs_to :users
 - has_many :shippings
 - has_many :purchases
 
@@ -50,13 +50,13 @@
 | prefectures      | text       | null: false |
 | municipalities   | text       | null: false |
 | street_address   | text       | null: false |
-| building_name    | text       | null: false |
-| telephone_number | text       | null: false |
+| building_name    | text       |             |
+| purchases        | references | null: false, foreign_key: true|
 
 
 ### Association
 
-- belongs_to :user
+- belongs_to :users
 - belongs_to :items
 - belongs_to :purchases
 
@@ -72,6 +72,6 @@
 
 ### Association
 
-- belongs_to :user
+- belongs_to :users
 - belongs_to :items
-- belongs_to :shippings
+- has_one    :shippings
